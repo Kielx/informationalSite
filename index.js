@@ -1,6 +1,7 @@
-var http = require("http");
-var fs = require("fs");
+const http = require("http");
+const fs = require("fs");
 const url = require("url");
+const port = 3000;
 
 server = http.createServer(function (req, res) {
   let q = url.parse(req.url, true);
@@ -19,5 +20,5 @@ server = http.createServer(function (req, res) {
     }
   });
 });
-
-server.listen(3000);
+console.log(`Server is running on port ${port}`);
+server.listen(port);
