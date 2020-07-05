@@ -7,13 +7,18 @@ server = http.createServer(function (req, res) {
   let filename = "." + q.pathname;
   fs.readFile(filename, function (err, data) {
     if (err) {
-      res.writeHead(404, { "Content-Type": "text/html" });
-      return res.end("404 Not Found");
+      //return res.end("404 Not Found");
+      fs.readFile("404.html", function (err, dat) {
+        res.writeHead(404, { "Content-Type": "text/html" });
+        res.write(dat);
+        return res.end();
+      });
+    } else {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write(data);
+      console.log("running");
+      return res.end();
     }
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.write(data);
-    console.log("running");
-    return res.end();
   });
 });
 
