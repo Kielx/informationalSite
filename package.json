@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Informational site as part of The Odin Project curriculum, rewritten with Express framework",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/Kielx/informationalSite#readme",
   "devDependencies": {
     "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
