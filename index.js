@@ -1,24 +1,18 @@
-const http = require("http");
-const fs = require("fs");
-const url = require("url");
+import express from "express";
+import path from "path";
+
+const __dirname = path.resolve();
 const port = 3000;
 
-server = http.createServer(function (req, res) {
-  let q = url.parse(req.url, true);
-  let filename = "." + q.pathname;
-  fs.readFile(filename, function (err, data) {
-    if (err) {
-      fs.readFile("404.html", function (err, dat) {
-        res.writeHead(404, { "Content-Type": "text/html" });
-        res.write(dat);
-        return res.end();
-      });
-    } else {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(data);
-      return res.end();
-    }
-  });
+const app = express();
+
+app.use("/", express.static(path.join(__dirname, "public")));
+
+app.use(function (req, res, next) {
+  res.status(404);
+  res.sendFile(path.join(__dirname + "/public/404.html"));
 });
-console.log(`Server is running on port ${port}`);
-server.listen(port);
+
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
