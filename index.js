@@ -9,7 +9,7 @@ const port = 3000;
 const app = express();
 
 app.use(
-  logger("common", {
+  logger("combined", {
     stream: fs.createWriteStream("./access.log", { flags: "a" }),
   })
 );
