@@ -5,6 +5,7 @@ import fs from "fs";
 
 const __dirname = path.resolve();
 const port = 3000;
+const staticPath = path.join(__dirname, "public");
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(
   })
 );
 
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use(express.static(staticPath));
 
 app.use(function (req, res, next) {
   res.status(404);
